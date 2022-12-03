@@ -12,10 +12,10 @@ const user = useSupabaseUser()
 <template>
   <div>
     <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">
-      <SidebarLeft :user="user" class="hidden md:block xs-col-span-1 xl:col-span-2 border-white" />
-      <div class="col-span-12 md:col-span-10 xl:col-span-10 border-white grid place-content-center"> 
-        <h1 class="text-bold text-3xl p-3 pt-6">Storage</h1>
-        <div class="overflow-x-auto relative shadow-md sm:rounded-lg w-max">
+      <SidebarLeft :user="user"/>
+      <div class="col-span-12 md:col-span-10 xl:col-span-10 border-white">
+        <h1 class="text-bold text-3xl p-3 pt-6">Bodegas</h1>
+        <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -26,19 +26,19 @@ const user = useSupabaseUser()
                     <label for="checkbox-all-search" class="sr-only">checkbox</label>
                   </div>
                 </th>
-                <th scope="col" class="py-3 px-6 pr-48">
+                <th scope="col" class="py-3 px-6">
                   Product name
                 </th>
-                <th scope="col" class="py-3 px-6 pr-16">
+                <th scope="col" class="py-3 px-6">
                   Color
                 </th>
-                <th scope="col" class="py-3 px-6 pr-16">
+                <th scope="col" class="py-3 px-6">
                   Category
                 </th>
-                <th scope="col" class="py-3 px-6 pr-16">
+                <th scope="col" class="py-3 px-6">
                   Price
                 </th>
-                <th scope="col" class="py-3 px-6 pr-16">
+                <th scope="col" class="py-3 px-6">
                   Action
                 </th>
               </tr>
@@ -365,15 +365,15 @@ const user = useSupabaseUser()
               </a>
             </li>
             <li>
-              <a href="#" aria-current="page"
+              <a href="#"
                 class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
             </li>
             <li>
-              <a href="#" aria-current="page"
+              <a href="#"
                 class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
             </li>
             <li>
-              <a href="#"
+              <a href="#" aria-current="page"
                 class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
             </li>
             <li>

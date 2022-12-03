@@ -29,21 +29,10 @@ const logout = async () => {
                     <nuxt-link to="/">
                         <SidebarLeftTab active>
                             <template v-slot:icon>
-                                <HomeIcon />
-                            </template>
-                            <template v-slot:name>
-                                Home
-                            </template>
-                        </SidebarLeftTab>
-                    </nuxt-link>
-
-                    <nuxt-link to="/products">
-                        <SidebarLeftTab>
-                            <template v-slot:icon>
                                 <ArchiveBoxIcon />
                             </template>
                             <template v-slot:name>
-                                Products
+                                Productos
                             </template>
                         </SidebarLeftTab>
                     </nuxt-link>
@@ -54,7 +43,7 @@ const logout = async () => {
                                 <TableCellsIcon />
                             </template>
                             <template v-slot:name>
-                                Storage
+                                Bodegas
                             </template>
                         </SidebarLeftTab>
                     </nuxt-link>
@@ -65,7 +54,7 @@ const logout = async () => {
                                 <FolderArrowDownIcon />
                             </template>
                             <template v-slot:name>
-                                Import
+                                Importar
                             </template>
                         </SidebarLeftTab>
                     </nuxt-link>
@@ -84,9 +73,7 @@ const logout = async () => {
 
                 <div class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800"
                     :class="defaultTransition" @click="logout">
-
                     <div class="flex flex-row">
-
                         <!--<img :src="props.user.profileImage" class="w-10 h-10 rounded-full">-->
                         <div class="flex-col hidden ml-2 xl:block">
                             <h1 class="text-sm font-bold text-gray-800 dark:text-white">
@@ -96,7 +83,6 @@ const logout = async () => {
                                 {{ user.email.split('@')[0] }}
                             </p>
                         </div>
-
                     </div>
 
                     <!-- ICON -->

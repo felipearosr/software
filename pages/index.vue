@@ -7,14 +7,21 @@ definePageMeta({
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 
+const { data: products } = await useAsyncData(async () => {
+  const { data } = await supabase
+    .from('Product')
+    .select('*')
+  return data
+})
+
 </script>
 
 <template>
   <div>
     <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">
-      <SidebarLeft :user="user"/>
+      <SidebarLeft :user="user" />
       <div class="col-span-12 md:col-span-10 xl:col-span-10 border-white">
-        <h1>Text</h1>
+        <h1 class="text-bold text-3xl p-3 pt-6">Productos</h1>
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -350,7 +357,7 @@ const user = useSupabaseUser()
         <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
           <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span
               class="font-semibold text-gray-900 dark:text-white">1-13</span> of <span
-              class="font-semibold text-gray-900 dark:text-white">1000</span></span>
+              class="font-semibold text-gray-900 dark:text-white"></span></span>
           <ul class="inline-flex items-center -space-x-px">
             <li>
               <a href="#"
