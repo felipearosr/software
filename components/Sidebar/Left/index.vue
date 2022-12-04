@@ -96,6 +96,5 @@ const logout = async () => {
             </div>
         </div>
     </div>
-
 </template>
 
