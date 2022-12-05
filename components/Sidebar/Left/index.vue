@@ -27,7 +27,7 @@ const logout = async () => {
                 </div>
                 <div class="mt-2 space-y-3">
                     <nuxt-link to="/">
-                        <SidebarLeftTab active>
+                        <SidebarLeftTab :active="active === 'home'" @click="active = 'home'">
                             <template v-slot:icon>
                                 <ArchiveBoxIcon />
                             </template>
@@ -38,7 +38,7 @@ const logout = async () => {
                     </nuxt-link>
 
                     <nuxt-link to="/storage">
-                        <SidebarLeftTab>
+                        <SidebarLeftTab :active="active === 'storage'" @click="active = 'storage'">
                             <template v-slot:icon>
                                 <TableCellsIcon />
                             </template>
@@ -49,7 +49,7 @@ const logout = async () => {
                     </nuxt-link>
 
                     <nuxt-link to="/import">
-                        <SidebarLeftTab>
+                        <SidebarLeftTab :active="active === 'import'" @click="active = 'import'">
                             <template v-slot:icon>
                                 <FolderArrowDownIcon />
                             </template>
