@@ -83,13 +83,13 @@ const handleForgotPassClick = () => {
                     <label for="email-address" class="sr-only">Email address</label>
                     <input id="email-address" name="email" type="email" autocomplete="email" required
                       class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                      placeholder="Email address" v-model="email">
+                      placeholder="Correo electrónico" v-model="email">
                   </div>
                   <div class=" rounded-md shadow-sm">
                     <label for="password" class="sr-only">Password</label>
                     <input id="password" name="password" type="password" autocomplete="current-password" required
                       class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                      placeholder="Password" v-model="password">
+                      placeholder="Contraseña" v-model="password">
                   </div>
                   <div>
                     <button type="submit" @click="login"
@@ -103,21 +103,20 @@ const handleForgotPassClick = () => {
                             clip-rule="evenodd" />
                         </svg>
                       </span>
-                      Sign in
+                      Iniciar sesión
                     </button>
                     <div class="flex justify-center pt-4">
                       <div class="text-sm">
                         <a href="#" @click="handleForgotPassClick"
-                          class="font-medium text-blue-600 hover:text-blue-500">Forgot your password?</a>
+                          class="font-medium text-blue-600 hover:text-blue-500">¿Olvidaste tu contraseña?</a>
                       </div>
                     </div>
                     <div class="flex justify-center pt-4">
                       <div class="text-sm">
                         <p class="text-gray-700">
-                          Don't have an account?
+                          No tienes cuenta?
                           <a href="#" @click="handleSingUpClick"
-                            class="font-medium text-blue-600 hover:text-blue-500">Sign
-                            up</a>
+                            class="font-medium text-blue-600 hover:text-blue-500">Regístrate</a>
                         </p>
                       </div>
                     </div>
@@ -128,7 +127,7 @@ const handleForgotPassClick = () => {
                     <div class="w-full border-t border-gray-300" />
                   </div>
                   <div class="relative flex justify-center text-sm">
-                    <span class="px-2 u-bg-white text-gray-500"> Connect with </span>
+                    <span class="px-2 u-bg-white text-gray-500"> O inicia sesión con: </span>
                   </div>
                 </div>
                 <div class="flex space-x-2">
@@ -160,13 +159,13 @@ const handleForgotPassClick = () => {
                     <label for="email-address" class="sr-only">Email address</label>
                     <input id="email-address" name="email" type="email" autocomplete="email" required
                       class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                      placeholder="Email address" v-model="email">
+                      placeholder="Correo electrónico" v-model="email">
                   </div>
                   <div class=" rounded-md shadow-sm">
                     <label for="password" class="sr-only">Password</label>
                     <input id="password" name="password" type="password" autocomplete="current-password" required
                       class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                      placeholder="Password" v-model="password">
+                      placeholder="Contraseña" v-model="password">
                   </div>
                   <div>
                     <button type="submit"
@@ -180,15 +179,14 @@ const handleForgotPassClick = () => {
                             clip-rule="evenodd" />
                         </svg>
                       </span>
-                      Sign Up
+                      Registrarse
                     </button>
                     <div class="flex justify-center pt-4">
                       <div class="text-sm">
                         <p class="text-gray-700">
-                          Already an account?
+                          ¿Ya tienes cuenta?
                           <a href="#" @click="handleSingInClick"
-                            class="font-medium text-blue-600 hover:text-blue-500">Sign
-                            in</a>
+                            class="font-medium text-blue-600 hover:text-blue-500">Inicia sesión</a>
                         </p>
                       </div>
                     </div>
@@ -200,7 +198,7 @@ const handleForgotPassClick = () => {
                   </div>
 
                   <div class="relative flex justify-center text-sm">
-                    <span class="px-2 u-bg-white text-gray-500"> Connect with </span>
+                    <span class="px-2 u-bg-white text-gray-500"> O inicia sesión con: </span>
                   </div>
                 </div>
                 <div class="flex space-x-2">
