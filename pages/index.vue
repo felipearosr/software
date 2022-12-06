@@ -1,5 +1,23 @@
+<script setup>
+import Pd_list from '~~/components/Pd_list.vue';
+definePageMeta({
+  middleware: 'auth'
+})
+const supabase = useSupabaseClient()
+const user = useSupabaseUser()
+const { data: products } = await useAsyncData(async () => {
+  const { data } = await supabase
+    .from('Product')
+    .select('*')
+  return data
+})
+</script>
+
 <template>
   <div>
-    <Pd_list />
+    <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">
+      <SidebarLeft :user="user" />
+      <Pd_list />
+    </div>
   </div>
 </template>
