@@ -17,7 +17,7 @@ const logout = async () => {
     <div class="h-full hidden md:block xs-col-span-1 xl:col-span-2">
         <div class="h-full">
             <div class="h-full flex flex-col">
-                <div class="p-2 my-2 rounded-full hover:bg-blue-100 w-min dark:hover:bg-white/20"
+                <div class="p-2 my-2 rounded-full hover:bg-blue-100 w-min"
                     :class="defaultTransition">
                     <nuxt-link to="/">
                         <div class="w-8 h-8">
@@ -71,12 +71,12 @@ const logout = async () => {
                     </UButton>
                 </div>
 
-                <div class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800"
+                <div class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100"
                     :class="defaultTransition" @click="logout">
                     <div class="flex flex-row">
                         <!--<img :src="props.user.profileImage" class="w-10 h-10 rounded-full">-->
                         <div class="flex-col hidden ml-2 xl:block">
-                            <h1 class="text-sm font-bold text-gray-800 dark:text-white">
+                            <h1 class="text-sm font-bold text-gray-800">
                                 {{ user.email.split('@')[0] }}
                             </h1>
                             <p class="text-sm text-gray-400">

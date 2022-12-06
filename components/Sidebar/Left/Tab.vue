@@ -1,6 +1,6 @@
 <template>
   <div
-      class="flex items-center p-3 w-min text-black hover:bg-gray-100 rounded-full dark:hover:bg-dim-200 dark:text-white"
+      class="flex items-center p-3 w-min text-black hover:bg-gray-100 rounded-full"
       :class="defaultTransition">
       <div class="w-6 h-6 text-dark">
           <slot name="icon"></slot>
