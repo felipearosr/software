@@ -21,7 +21,7 @@ const { data: products } = await useAsyncData(async () => {
     <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">
       <SidebarLeft :user="user" />
       <div class="col-span-12 md:col-span-10 xl:col-span-10 border-white">
-        <h1 class="text-bold text-3xl p-3 pt-6">Productos</h1>
+        <h1 class="text-bold text-3xl p-3 pt-6 text-gray-500">Productos</h1>
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
