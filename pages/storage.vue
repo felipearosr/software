@@ -1,10 +1,10 @@
 <script setup>
 const supabase = useSupabaseClient()
-const render_by_name = ref(true)
 const { data: Warehouse } = useAsyncData(async () => {
   const { data } = await supabase.from('Warehouse').select()
   return data
 })
+
 </script>
 
 <template>
