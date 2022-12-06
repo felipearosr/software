@@ -12,7 +12,6 @@ const { defaultTransition } = useTailwindConfig()
 
 const logout = async () => {
     await client.auth.signOut()
-    location.reload();
 }
 </script>
 
