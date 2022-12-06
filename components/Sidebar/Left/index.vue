@@ -58,6 +58,7 @@ const logout = async () => {
                             </template>
                         </SidebarLeftTab>
                     </nuxt-link>
+                    <nuxt-link to="/auth/singIn">
                     <SidebarLeftTab @click="logout" class="cursor-pointer">
                         <template v-slot:icon>
                             <ArrowLeftOnRectangleIcon />
@@ -66,9 +67,9 @@ const logout = async () => {
                             Logout
                         </template>
                     </SidebarLeftTab>
-                    <UButton v-if="user" class="u-text-white" variant="transparent" @click="logout">
-                        Logout
-                    </UButton>
+                    
+
+                    </nuxt-link>
                 </div>
 
                 <div class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100"
