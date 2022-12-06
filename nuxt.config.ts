@@ -4,5 +4,5 @@ export default defineNuxtConfig({
         '@nuxthq/ui',
         '@nuxtjs/supabase',
         '@nuxtjs/tailwindcss',
-    ]
+    ],
 })
