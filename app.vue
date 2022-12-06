@@ -19,8 +19,8 @@ const { data: products } = await useAsyncData(async () => {
 </script>
 
 <template>
-  <div>
-    <div class="grid grid-cols-12 mx-auto justify-content-center content-center h-screen bg-gray-200 sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">
+  <div class="bg-gray-200">
+    <div class="grid grid-cols-12 mx-auto justify-content-center content-center h-screen  sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">
       <SidebarLeft :user="user" />
       <NuxtPage class="col-span-12 md:col-span-10 xl:col-span-10 border-white "/>
     </div>
