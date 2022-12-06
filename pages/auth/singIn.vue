@@ -1,12 +1,19 @@
 <script setup>
-const { auth } = useSupabaseClient()
+const user = useSupabaseUser()
+const { auth } = useSupabaseAuthClient()
+
+watchEffect(() => {
+    if (user.value) {
+        navigateTo('/')
+    }
+})
 </script>
 
 <template>
     <PageContainer>
         <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <h2 class="my-6 text-center text-3xl font-extrabold text-black">
-                Sign in to your account
+                Inicia sesión
             </h2>
             <SingInCard>
                 <UButton class="mt-3" icon="mdi:github" block variant="white"

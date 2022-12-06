@@ -2,17 +2,21 @@
 
 const email = ref('')
 const password = ref('')
+const alert = ref(false)
 
 const supabaseUser = useSupabaseUser()
-const supabaseClient = useSupabaseClient()
+const client = useSupabaseAuthClient()
+
 
 const singUp = async () => {
   try {
-    const { data, error } = await supabaseClient.auth.signUp({
+    const { data, error } = await client.auth.signUp({
       email: email.value,
       password: password.value,
     })
+    alert.value = true
     if (error) throw error
+    console.log(alert)
     console.log('data', data)
   } catch (error) {
     console.log('error', error)
@@ -28,11 +32,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-    <h2 class="my-6 text-center text-3xl font-extrabold u-text-white">
-      Create an account
-    </h2>
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md w-[19rem]">
       <div class="u-bg-white py-2 pb-8 px-4 shadow sm:rounded sm:px-10">
         <div>
           <form @submit.prevent="singUp" class="mt-8 space-y-3" action="#" method="POST">
@@ -88,6 +88,5 @@ onMounted(() => {
         </div>
       </div>
     </div>
-  </div>
-
+    <Alert v-if="alert"/>
 </template>
