@@ -61,6 +61,17 @@ const logout = async () => {
                         </SidebarLeftTab>
                     </nuxt-link>
 
+                    <nuxt-link to="/implement">
+                        <SidebarLeftTab :active="active === 'implement'" @click="active = 'implement'">
+                            <template v-slot:icon>
+                                <FolderArrowDownIcon />
+                            </template>
+                            <template v-slot:name>
+                                HUs
+                            </template>
+                        </SidebarLeftTab>
+                    </nuxt-link>
+
                     <!-- 
                     <SidebarLeftTab @click="logout" class="cursor-pointer">
                         <template v-slot:icon>
