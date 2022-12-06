@@ -1,22 +1,29 @@
 <script setup>
 const supabase = useSupabaseClient()
-let render_by_name = true
-const renderList = () => {
-  render_by_name = !render_by_name
-  console.log(render_by_name)
-}
-console.log(render_by_name)
-
-const { data: Product } = useAsyncData(async () => {
-  const { data } = await supabase.from('Product').select('*').order('name', { ascending: render_by_name })
-  return data
-})
-
+const render_by_name = ref(true)
+// async function renderList() {
+//     if (render_by_name.value == true) {
+//         render_by_name.value = false
+//     }
+//     else {
+//         render_by_name.value = true
+//     }
+//     const { data: Product } = useAsyncData(async () => {
+//         const { data } = await supabase.from('Product').select('*').order('nombre', { ascending: render_by_name.value })
+//         return data
+//     })
+//     console.log(render_by_name.value)
+//     clearNuxtData()
+// }
+    const { data: Warehouse } = useAsyncData(async () => {
+        const { data } = await supabase.from('Warehouse').select()
+        return data
+    })
 </script>
 
-<template>          
+<template>
     <div class="col-span-12 md:col-span-10 xl:col-span-10 border-white">
-        <h1 class="text-bold text-3xl p-3 pt-6 text-gray-500">Productos</h1>
+        <h1 class="text-bold text-3xl p-3 pt-6 text-gray-500">Bodegas</h1>
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -28,18 +35,14 @@ const { data: Product } = useAsyncData(async () => {
                     <label for="checkbox-all-search" class="sr-only">checkbox</label>
                   </div>
                 </th>
-
-                <button scope="col" class="py-3 px-6" @click="renderList()">
+                <th scope="col" class="py-3 px-6">
                   Id
-                </button>
-                <th scope="col" class="py-3 px-6">
-                  Nombre
                 </th>
                 <th scope="col" class="py-3 px-6">
-                  Valor
+                  Alias
                 </th>
                 <th scope="col" class="py-3 px-6">
-                  Descripción
+                  Dirección
                 </th>
                 <th scope="col" class="py-3 px-6">
                   Action
@@ -47,7 +50,7 @@ const { data: Product } = useAsyncData(async () => {
               </tr>
             </thead>
             <tbody>
-              <tr class="bg-white border-b hover:bg-gray-50" v-for="pd in Product" :key="pd.id">
+              <tr class="bg-white border-b hover:bg-gray-50" v-for="wh in Warehouse" :key="wh.id">
                 <td class="p-4 w-4">
                   <div class="flex items-center">
                     <input id="checkbox-table-search-2" type="checkbox"
@@ -55,10 +58,9 @@ const { data: Product } = useAsyncData(async () => {
                     <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
                   </div>
                 </td>
-                <td>{{ pd.id }}</td>
-                <td>{{ pd.name }}</td>
-                <td>{{ pd.price }}</td>
-                <td>{{ pd.description }}</td>
+                <td>{{ wh.id }}</td>
+                <td>{{ wh.alias }}</td>
+                <td>{{ wh.address }}</td>
                 <td class="py-4 px-6">
                   <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
                 </td>
