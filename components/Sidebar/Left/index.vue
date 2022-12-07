@@ -1,9 +1,4 @@
 <script setup>
-import { ArchiveBoxIcon as SolidArchiveBoxIcon } from "@heroicons/vue/24/solid"
-import { TableCellsIcon as SolidTableCellsIcon } from "@heroicons/vue/24/solid"
-import { FolderArrowDownIcon as SolidFolderArrowDownIcon } from "@heroicons/vue/24/solid"
-import { ArrowLeftOnRectangleIcon as SolidArrowLeftOnRectangleIcon } from "@heroicons/vue/24/solid"
-
 import { ArchiveBoxIcon, TableCellsIcon, ArrowLeftOnRectangleIcon, FolderArrowDownIcon, GlobeAsiaAustraliaIcon } from "@heroicons/vue/24/outline"
 
 const active = ref('')
@@ -49,7 +44,7 @@ const getIcon = (icon, active) => {
                     <nuxt-link to="/">
                         <SidebarLeftTab :active="active === 'home'" @click="active = 'home'">
                             <template v-slot:icon="{ active }">
-                                <ArchiveBoxIcon :name="getIcon(ArchiveBoxIcon, active)" />
+                                <ArchiveBoxIcon  />
                             </template>
                             <template v-slot:name>
                                 Productos
@@ -60,7 +55,7 @@ const getIcon = (icon, active) => {
                     <nuxt-link to="/storage">
                         <SidebarLeftTab :active="active === 'storage'" @click="active = 'storage'">
                             <template v-slot:icon="{ active }">
-                                <TableCellsIcon :name="getIcon(SolidTableCellsIcon, active)" />
+                                <TableCellsIcon />
                             </template>
                             <template v-slot:name>
                                 Bodegas
@@ -71,7 +66,7 @@ const getIcon = (icon, active) => {
                     <nuxt-link to="/import">
                         <SidebarLeftTab :active="active === 'import'" @click="active = 'import'">
                             <template v-slot:icon="{ active }">
-                                <FolderArrowDownIcon :name="getIcon(SolidFolderArrowDownIcon, active)" />
+                                <FolderArrowDownIcon />
                             </template>
                             <template v-slot:name>
                                 Importar
