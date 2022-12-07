@@ -39,7 +39,7 @@ const getIcon = (icon, active) => {
                                     <GlobeAsiaAustraliaIcon class="w-8 h-8" />
                                 </slot>
                             </div>
-                            <div class="hidden pl-2 text-xl font-bold text-gray-800 xl:block" :class="textClasses">
+                            <div class="hidden pl-2 text-xl font-bold text-gray-800 xl:block">
                                 <slot name="name">LanasMave</slot>
                             </div>
                         </div>
