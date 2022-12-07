@@ -118,8 +118,8 @@ const handleClick = (id) => {
         <div class="flex">
           <!-- <button @click="downloadCSV">Download CSV</button> -->
               <UButton @click="downloadCSV"
-              class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-              Descargar csv</UButton>
+              class="bg-green-200 hover:bg-green-500 text-green-500 hover:text-white font-bold py-2 px-4 rounded-lg">
+              Descargar tabla</UButton>
           <div class="px-3">
             <UButton @click="openAddProductModal"
               class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
