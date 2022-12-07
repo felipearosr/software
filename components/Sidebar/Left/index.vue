@@ -78,17 +78,6 @@ const getIcon = (icon, active) => {
                             </template>
                         </SidebarLeftTab>
                     </nuxt-link>
-
-                    <nuxt-link to="/implement">
-                        <SidebarLeftTab :active="active === 'implement'" @click="active = 'implement'">
-                            <template v-slot:icon="{ active }">
-                                <FolderArrowDownIcon />
-                            </template>
-                            <template v-slot:name>
-                                HUs
-                            </template>
-                        </SidebarLeftTab>
-                    </nuxt-link>
                 </div>
                 <div v-if="user"
                     class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100"

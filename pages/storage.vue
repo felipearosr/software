@@ -324,14 +324,8 @@ const handleClick = (id) => {
         <div class="flex">
           <div class="pl-3">
             <UButton @click="handleVolverClick"
-              class="bg-green-200 hover:bg-green-500 text-green-500 hover:text-white font-bold py-2 px-4 rounded-lg">
+              class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
               Volver</UButton>
-          </div>
-  
-          <div class="pl-3">
-            <UButton @click="openDeleteWarehouseModal"
-              class="bg-red-200 hover:bg-red-500 text-red-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-              Borrar bodega</UButton>
           </div>
         </div>
       </div>
@@ -556,14 +550,8 @@ const handleClick = (id) => {
   
           <div class="pl-3">
             <UButton @click="handleVolverClick"
-              class="bg-green-200 hover:bg-green-500 text-green-500 hover:text-white font-bold py-2 px-4 rounded-lg">
+              class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
               Volver</UButton>
-          </div>
-
-          <div class="pl-3">
-            <UButton @click="openDeleteWarehouseModal"
-              class="bg-red-200 hover:bg-red-500 text-red-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-              Borrar bodega</UButton>
           </div>
         </div>
       </div>
