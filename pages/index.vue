@@ -114,7 +114,7 @@ async function insert_product() {
             class="bg-green-200 hover:bg-green-500 text-green-600 hover:text-white font-bold py-2 px-4 rounded-lg">
             Descargar tabla</UButton>
         </div>
-        <div class="px-3">
+        <div class="pl-3">
           <UButton @click="openAddProductModal"
             class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
             Agregar producto</UButton>
