@@ -22,7 +22,7 @@ const { data: Product, count } = useAsyncData(async () => {
     .from('Product')
     .select('*', { count: 'exact' })
     .order('name', { ascending: render_by_name })
-    .limit(13)
+    .range(14, 26)
   return { data, count }
 })
 
@@ -177,16 +177,16 @@ async function insert_product() {
       </table>
     </div>
     <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
-      <span class="text-sm font-normal text-gray-500 pl-3">Mostrando <span class="font-semibold text-gray-900">1-13</span>
-        de <span class="font-semibold text-gray-900">{{ Product.count }}</span></span>
+      <span class="text-sm font-normal text-gray-500 pl-3">Showing <span class="font-semibold text-gray-900">14-26</span>
+        of <span class="font-semibold text-gray-900">{{ Product.count }}</span></span>
       <ul v-if="(Product.count > 13)" class="inline-flex items-center -space-x-px rounded-lg">
         <li>
           <a href="/" aria-current="page"
-            class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 rounded-l-lg">1</a>
+            class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 rounded-l-lg">1</a>
         </li>
         <li>
-          <a href="/2"
-            class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
+          <a href="#"
+            class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700">2</a>
         </li>
         <li>
           <a href="/3"
