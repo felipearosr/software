@@ -31,15 +31,17 @@ const getIcon = (icon, active) => {
     <div class="h-full hidden md:block xs-col-span-1 xl:col-span-2">
         <div class="h-full">
             <div class="h-full flex flex-col">
-                <div class="p-2 my-2 rounded-full hover:bg-blue-100 w-min" :class="defaultTransition">
+                <div class="rounded-full hover:bg-blue-100 w-min" :class="defaultTransition">
                     <nuxt-link to="/">
-                        <div class="hidden ml-4 text-xl xl:block" :class="textClasses">
-                            <h1 class="text-2xl font-bold text-gray-800">
-                               Lana Mavel
-                            </h1>
-                         </div>
-                        <div class="w-8 h-8">
-                            <GlobeAsiaAustraliaIcon />
+                        <div class="flex items-center p-3 w-min text-black rounded-full" :class="defaultTransition">
+                            <div class="w-8 h-8">
+                                <slot name="icon">
+                                    <GlobeAsiaAustraliaIcon class="w-8 h-8" />
+                                </slot>
+                            </div>
+                            <div class="hidden pl-2 text-xl font-bold text-gray-800 xl:block" :class="textClasses">
+                                <slot name="name">LanasMave</slot>
+                            </div>
                         </div>
                     </nuxt-link>
                 </div>
@@ -47,7 +49,7 @@ const getIcon = (icon, active) => {
                     <nuxt-link to="/">
                         <SidebarLeftTab :active="active === 'home'" @click="active = 'home'">
                             <template v-slot:icon="{ active }">
-                                <ArchiveBoxIcon :name="getIcon(ArchiveBoxIcon, active)"/>
+                                <ArchiveBoxIcon :name="getIcon(ArchiveBoxIcon, active)" />
                             </template>
                             <template v-slot:name>
                                 Productos
@@ -58,7 +60,7 @@ const getIcon = (icon, active) => {
                     <nuxt-link to="/storage">
                         <SidebarLeftTab :active="active === 'storage'" @click="active = 'storage'">
                             <template v-slot:icon="{ active }">
-                                <TableCellsIcon :name="getIcon(SolidTableCellsIcon, active)"/>
+                                <TableCellsIcon :name="getIcon(SolidTableCellsIcon, active)" />
                             </template>
                             <template v-slot:name>
                                 Bodegas
@@ -69,7 +71,7 @@ const getIcon = (icon, active) => {
                     <nuxt-link to="/import">
                         <SidebarLeftTab :active="active === 'import'" @click="active = 'import'">
                             <template v-slot:icon="{ active }">
-                                <FolderArrowDownIcon :name="getIcon(SolidFolderArrowDownIcon, active)"/>
+                                <FolderArrowDownIcon :name="getIcon(SolidFolderArrowDownIcon, active)" />
                             </template>
                             <template v-slot:name>
                                 Importar
@@ -88,7 +90,8 @@ const getIcon = (icon, active) => {
                         </SidebarLeftTab>
                     </nuxt-link>
                 </div>
-                <div v-if="user" class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100"
+                <div v-if="user"
+                    class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100"
                     :class="defaultTransition" @click="logout">
                     <div class="flex flex-row">
                         <div class="flex-col hidden ml-2 xl:block pl-2">
@@ -112,4 +115,3 @@ const getIcon = (icon, active) => {
         </div>
     </div>
 </template>
-

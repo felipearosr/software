@@ -96,12 +96,6 @@ const handleClick = (id) => {
       <div class="flex justify-between items-center">
         <h1 class="text-bold text-3xl p-3 pt-6 text-gray-700">Bodegas</h1>
         <div class="flex">
-  
-          <div class="pl-3">
-            <UButton @click="openDeleteWarehouseModal"
-              class="bg-red-200 hover:bg-red-500 text-red-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-              Borrar bodega</UButton>
-          </div>
           <div class="px-3">
             <UButton @click="openAddProductModal"
               class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
@@ -380,9 +374,9 @@ const handleClick = (id) => {
         </table>
       </div>
       <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
-        <span class="text-sm font-normal text-gray-500 pl-2">Mostrando <span class="font-semibold text-gray-900">1-{{ Warehouse.length }}</span>
-          de <span class="font-semibold text-gray-900">{{ Warehouse.length }}</span></span>
-        <ul v-if="(Warehouse > 13)" class="inline-flex items-center -space-x-px">
+        <span class="text-sm font-normal text-gray-500 pl-2">Mostrando <span class="font-semibold text-gray-900">1-{{ Pd_wh1.length }}</span>
+          de <span class="font-semibold text-gray-900">{{ Pd_wh1.length }}</span></span>
+        <ul v-if="(Pd_wh1 > 13)" class="inline-flex items-center -space-x-px">
           <li>
             <a href="#"
               class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
@@ -618,9 +612,9 @@ const handleClick = (id) => {
         </table>
       </div>
       <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
-        <span class="text-sm font-normal text-gray-500 pl-2">Mostrando <span class="font-semibold text-gray-900">1-{{ Warehouse.length }}</span>
-          de <span class="font-semibold text-gray-900">{{ Warehouse.length }}</span></span>
-        <ul v-if="(Warehouse > 13)" class="inline-flex items-center -space-x-px">
+        <span class="text-sm font-normal text-gray-500 pl-2">Mostrando <span class="font-semibold text-gray-900">1-{{ Pd_wh2.length }}</span>
+          de <span class="font-semibold text-gray-900">{{ Pd_wh2.length }}</span></span>
+        <ul v-if="(Pd_wh2 > 13)" class="inline-flex items-center -space-x-px">
           <li>
             <a href="#"
               class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
