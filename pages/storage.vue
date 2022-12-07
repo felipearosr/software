@@ -14,11 +14,11 @@ const openModal = () => {
   console.log(isProductModalOpen);
 }
 
-var whId;
+var prodId;
 
 const openDeleteWarehouseModal = (id) => {
   isDeleteProductModalOpen.value = true;
-  whId = id;
+  prodId = id;
   console.log(isDeleteProductModalOpen);
 }
 
@@ -40,13 +40,9 @@ const address = ref('')
 async function insert_warehouse() {
   const { error } = await supabase.from('Warehouse').insert({ id: id.value, alias: alias.value, address: address.value })
   closeModal()
-  window.location.reload();
 }
 async function remove_warehouse() {
-  console.log(whId)
-  const { error } = await supabase.from('Warehouse').delete().eq('id', whId)
-  closeModal()
-  window.location.reload();
+  const { error } = await supabase.from('Product').delete().eq('id', prodId)
 }
 
 </script>
@@ -67,16 +63,33 @@ async function remove_warehouse() {
             class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
             Crear bodega</UButton>
         </div>
+        <label for="table-search" class="sr-only">Search</label>
+        <div class="relative">
+          <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
+              viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <input type="text" id="table-search-warehouse"
+            class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Buscar bodegas">
+        </div>
       </div>
     </div>
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-<<<<<<< HEAD
       <table class="w-full table-auto text-sm text-left text-gray-500">
-=======
-      <table class="overflow-x-auto w-full text-sm text-left text-gray-500">
->>>>>>> refs/remotes/origin/main
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
+            <th scope="col" class="p-4">
+              <div class="flex items-center">
+                <input id="checkbox-all-search" type="checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="checkbox-all-search" class="sr-only">checkbox</label>
+              </div>
+            </th>
             <th scope="col" class="py-3 px-6">
               Id
             </th>
@@ -87,21 +100,32 @@ async function remove_warehouse() {
               Dirección
             </th>
             <th scope="col" class="py-3 px-6">
-              Acciones
+              Action
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Action
             </th>
           </tr>
         </thead>
         <tbody>
           <tr class="bg-white border-b hover:bg-gray-50" v-for="wh in Warehouse" :key="wh.id">
-            <td class="py-4 px-6">{{ wh.id }}</td>
-            <td class="py-4 px-6">{{ wh.alias }}</td>
-            <td class="py-4 px-6">{{ wh.address }}</td>
+            <td class="p-4 w-4">
+              <div class="flex items-center">
+                <input id="checkbox-table-search-2" type="checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
+              </div>
+            </td>
+            <td>{{ wh.id }}</td>
+            <td>{{ wh.alias }}</td>
+            <td>{{ wh.address }}</td>
             <td class="py-4 px-6">
-              <a href="#" class="font-medium text-blue-600 hover:underline">Ver</a>
+              <a href="#" class="font-medium text-blue-600 hover:underline">Ver Bodega</a>
+            </td>
+            <td class="py-4 px-6">
               <a href="#" type="button" @click="openDeleteWarehouseModal(wh.id)"
                 class="pl-2 font-medium text-red-600 hover:underline">Borrar</a>
             </td>
-
           </tr>
         </tbody>
       </table>

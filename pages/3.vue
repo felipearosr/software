@@ -181,7 +181,7 @@ async function insert_product() {
         of <span class="font-semibold text-gray-900">{{ Product.count }}</span></span>
       <ul v-if="(Product.count > 13)" class="inline-flex items-center -space-x-px rounded-lg">
         <li>
-          <a href="/" aria-current="page"
+          <a href="/" 
             class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 rounded-l-lg">1</a>
         </li>
         <li>
@@ -189,7 +189,7 @@ async function insert_product() {
             class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
         </li>
         <li>
-          <a href="#"
+          <a href="#" aria-current="page"
             class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700 rounded-r-lg">3</a>
         </li>
       </ul>
