@@ -103,8 +103,8 @@ async function remove_warehouse() {
       </table>
     </div>
     <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
-      <span class="text-sm font-normal text-gray-500">Showing <span class="font-semibold text-gray-900">1-13</span>
-        of <span class="font-semibold text-gray-900">{{ Warehouse.length }}</span></span>
+      <span class="text-sm font-normal text-gray-500 pl-2">Mostrando <span class="font-semibold text-gray-900">1-{{ Warehouse.length }}</span>
+        de <span class="font-semibold text-gray-900">{{ Warehouse.length }}</span></span>
       <ul v-if="(Warehouse > 13)" class="inline-flex items-center -space-x-px">
         <li>
           <a href="#"
