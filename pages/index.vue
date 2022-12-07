@@ -2,8 +2,13 @@
 const supabase = useSupabaseClient()
 let render_by_name = true
 
-const isModalOpen = ref(true);
-console.log(isModalOpen);
+const isProductModalOpen = ref(false);
+const isProductEditModalOpen = ref(false);
+const isDeleteProductModalOpen = ref(false);
+
+
+
+console.log(isProductModalOpen);
 
 const renderList = () => {
   render_by_name = !render_by_name
@@ -20,12 +25,24 @@ const { data: Product, count } = useAsyncData(async () => {
 })
 
 const openModal = () => {
-  isModalOpen.value = true;
-  console.log(isModalOpen);
+  isProductModalOpen.value = true;
+  console.log(isProductModalOpen);
+}
+
+const openDeleteProductModal = () => {
+  isDeleteProductModalOpen.value = true;
+  console.log(isDeleteProductModalOpen);
+}
+
+const openAddProductModal = () => {
+  isProductModalOpen.value = true;
+  console.log(isProductModalOpen);
 }
 
 const closeModal = () => {
-  isModalOpen.value = false;
+  isProductModalOpen.value = false;
+  isProductEditModalOpen.value = false;
+  isDeleteProductModalOpen.value = false;
 }
 </script>
 
@@ -40,12 +57,12 @@ const closeModal = () => {
             Descargar tabla</UButton>
         </div>
         <div class="pl-3">
-          <UButton @click="openModal"
+          <UButton @click="openDeleteProductModal"
             class="bg-red-200 hover:bg-red-500 text-red-500 hover:text-white font-bold py-2 px-4 rounded-lg">
             Borrar Producto</UButton>
         </div>
         <div class="px-3">
-          <UButton @click="openModal"
+          <UButton @click="openAddProductModal"
             class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
             Agregar Producto</UButton>
         </div>
@@ -84,7 +101,7 @@ const closeModal = () => {
               Nombre
             </th>
             <th scope="col" class="py-3 px-6">
-              Valor
+              Valor5
             </th>
             <th scope="col" class="py-3 px-6">
               Descripción
@@ -168,9 +185,9 @@ const closeModal = () => {
     </nav>
   </div>
   <div>
-    <div v-if="isModalOpen" class="h-screen flex justify-center items-center">
+    <div v-if="isProductModalOpen" class="h-screen flex justify-center items-center">
       <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <!--
+        <!--
       Background backdrop, show/hide based on modal state.
   
       Entering: "ease-out duration-300"
@@ -180,11 +197,11 @@ const closeModal = () => {
         From: "opacity-100"
         To: "opacity-0"
     -->
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-  
-    <div class="fixed inset-0 z-10 overflow-y-auto">
-      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        <!--
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <!--
           Modal panel, show/hide based on modal state.
   
           Entering: "ease-out duration-300"
@@ -194,32 +211,132 @@ const closeModal = () => {
             From: "opacity-100 translate-y-0 sm:scale-100"
             To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         -->
-        <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="sm:flex sm:items-start">
-              <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                <!-- Heroicon name: outline/exclamation-triangle -->
-                <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v3.75m-9.303 3.376C1.83 19.126 2.914 21 4.645 21h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 4.88c-.866-1.501-3.032-1.501-3.898 0L2.697 17.626zM12 17.25h.007v.008H12v-.008z" />
-                </svg>
-              </div>
-              <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Deactivate account</h3>
-                <div class="mt-2">
-                  <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p>
+            <div class="relative w-full max-w-2xl h-full md:h-auto">
+              <!-- Modal content -->
+              <form action="#" class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Agregar producto
+                  </h3>
+                  <button type="button" @click="closeModal"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-toggle="editUserModal">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </button>
                 </div>
-              </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                  <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="first-name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">ID
+                        producto</label>
+                      <input type="text" name="first-name" id="first-name"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Bonnie" required="">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="last-name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Nombre
+                        producto</label>
+                      <input type="text" name="last-name" id="last-name"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Green" required="">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Precio
+                        producto</label>
+                      <input type="email" name="email" id="email"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="example@company.com" required="">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="phone-number"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Descripción
+                        producto</label>
+                      <input type="number" name="phone-number" id="phone-number"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="e.g. +(12)3456 789" required="">
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                  <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save
+                    all</button>
+                  <button type="submit" @click="closeModal"
+                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Close</button>
+                </div>
+              </form>
             </div>
-          </div>
-          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-            <button type="button" class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Deactivate</button>
-            <button type="button" @click="closeModal" class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-
+    <div v-else-if="isDeleteProductModalOpen" class="h-screen flex justify-center items-center">
+      <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!--
+        Background backdrop, show/hide based on modal state.
+    
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <!--
+            Modal panel, show/hide based on modal state.
+    
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+            <div
+              class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                  <div
+                    class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <!-- Heroicon name: outline/exclamation-triangle -->
+                    <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 10.5v3.75m-9.303 3.376C1.83 19.126 2.914 21 4.645 21h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 4.88c-.866-1.501-3.032-1.501-3.898 0L2.697 17.626zM12 17.25h.007v.008H12v-.008z" />
+                    </svg>
+                  </div>
+                  <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Deactivate account</h3>
+                    <div class="mt-2">
+                      <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data
+                        will be permanently removed. This action cannot be undone.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                <button type="button" 
+                  class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Deactivate</button>
+                <button type="button" @click="closeModal"
+                  class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
