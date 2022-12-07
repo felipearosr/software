@@ -18,12 +18,14 @@
     "tailwindcss": "^3.2.4"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.4",
     "@heroicons/vue": "^2.0.13",
     "@supabase/supabase-js": "^2.1.1",
     "@supabase/ui": "^0.36.5",
     "@types/papaparse": "^5.3.5",
     "csv-parse": "^5.3.3",
     "dropzone-vue": "^0.1.11",
+    "flowbite": "^1.5.4",
     "papaparse": "^5.3.2",
     "vue3-dropzone": "^2.0.1"
   }

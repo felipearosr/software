@@ -13,11 +13,7 @@ const { data: products } = await useAsyncData(async () => {
 </script>
 
 <template>
-    <div>
-        <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">
-            <SidebarLeft />
-        </div>
-        
+    <div class="flex p-4">
         <div class = "container mx-auto">
             INSERT STUFF
             <Pd_insert />

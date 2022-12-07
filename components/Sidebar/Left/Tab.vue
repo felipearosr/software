@@ -20,4 +20,14 @@ const props = defineProps({
   }
 })
 const textClasses = computed(() => props.active ? 'font-semibold' : 'font-normal')
+
+const getIcon = (icon, active) => {
+  if (active) {
+    // Return the solid version of the icon
+    return `${icon.name}Solid`
+  } else {
+    // Return the outline version of the icon
+    return icon.name
+  }
+}
 </script>

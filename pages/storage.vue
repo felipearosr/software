@@ -1,14 +1,14 @@
 <script setup>
 const supabase = useSupabaseClient()
-const render_by_name = ref(true)
 const { data: Warehouse } = useAsyncData(async () => {
   const { data } = await supabase.from('Warehouse').select()
   return data
 })
+
 </script>
 
 <template>
-  <div>
+  <div class="px-4">
         <h1 class="text-bold text-3xl p-3 pt-6 text-gray-500">Bodegas</h1>
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500">
@@ -56,8 +56,8 @@ const { data: Warehouse } = useAsyncData(async () => {
         </div>
         <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
           <span class="text-sm font-normal text-gray-500">Showing <span class="font-semibold text-gray-900">1-13</span>
-            of <span class="font-semibold text-gray-900"></span></span>
-          <ul class="inline-flex items-center -space-x-px">
+            of <span class="font-semibold text-gray-900">{{ Warehouse.length }}</span></span>
+          <ul v-if="(Warehouse > 13)" class="inline-flex items-center -space-x-px">
             <li>
               <a href="#"
                 class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
