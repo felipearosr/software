@@ -2,6 +2,11 @@
 const supabase = useSupabaseClient()
 let render_by_name = true
 
+let prodId;
+let prodName;
+let prodPrice;
+let prodDesc;
+
 const isProductModalOpen = ref(false);
 const isProductEditModalOpen = ref(false);
 const isDeleteProductModalOpen = ref(false);
@@ -25,10 +30,6 @@ const openModal = () => {
   console.log(isProductModalOpen);
 }
 
-let prodId;
-let prodName;
-let prodPrice;
-let prodDesc;
 
 const openDeleteProductModal = (id) => {
   isDeleteProductModalOpen.value = true;
