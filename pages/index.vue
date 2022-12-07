@@ -28,10 +28,17 @@ const openModal = () => {
   isProductModalOpen.value = true;
   console.log(isProductModalOpen);
 }
+var prodId;
 
-const openDeleteProductModal = () => {
+const openDeleteProductModal = (id) => {
   isDeleteProductModalOpen.value = true;
+  prodId = id;
+  alert(prodId)
   console.log(isDeleteProductModalOpen);
+}
+
+function function3() {
+  window.alert(prodId)
 }
 
 const openAddProductModal = () => {
@@ -43,6 +50,27 @@ const closeModal = () => {
   isProductModalOpen.value = false;
   isProductEditModalOpen.value = false;
   isDeleteProductModalOpen.value = false;
+}
+
+const id = ref('')
+const name = ref('')
+const price = ref('')
+const description = ref('')
+
+async function remove_product() {
+  alert(prodId)
+  const { error } = await supabase.from('Product').delete().eq('id', prodId)
+}
+
+async function insert_product() {
+  console.log('works')
+  const { error } = await supabase.from('Product').insert({ id: id.value, name: name.value, price: price.value, description: description.value })
+  closeModal()
+}
+
+function function2() {
+  alert("asd")
+
 }
 </script>
 
@@ -59,12 +87,12 @@ const closeModal = () => {
         <div class="pl-3">
           <UButton @click="openDeleteProductModal"
             class="bg-red-200 hover:bg-red-500 text-red-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-            Borrar Producto</UButton>
+            Borrar producto</UButton>
         </div>
         <div class="px-3">
           <UButton @click="openAddProductModal"
             class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-            Agregar Producto</UButton>
+            Agregar producto</UButton>
         </div>
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
@@ -76,7 +104,7 @@ const closeModal = () => {
                 clip-rule="evenodd"></path>
             </svg>
           </div>
-          <input type="text" id="table-search-users"
+          <input type="text" id="table-search-products"
             class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Buscar productos">
         </div>
@@ -101,13 +129,16 @@ const closeModal = () => {
               Nombre
             </th>
             <th scope="col" class="py-3 px-6">
-              Valor5
+              Valor
             </th>
             <th scope="col" class="py-3 px-6">
               Descripción
             </th>
             <th scope="col" class="py-3 px-6">
-              Action
+              Acción
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Acción
             </th>
           </tr>
         </thead>
@@ -126,8 +157,11 @@ const closeModal = () => {
             <td>{{ pd.description }}</td>
             <td class="py-4 px-6">
               <a href="#" type="button" data-modal-toggle="editUserModal"
-                class="font-medium text-blue-600 hover:underline">Edit</a>
-              <a href="#" type="button" class="pl-2 font-medium text-red-600 hover:underline">Delete</a>
+                class="font-medium text-blue-600 hover:underline">Editar</a>
+            </td>
+            <td class="py-4 px-6">
+              <a href="#" type="button" @click="openDeleteProductModal(pd.id)"
+                class="pl-2 font-medium text-red-600 hover:underline">Borrar</a>
             </td>
           </tr>
         </tbody>
@@ -213,7 +247,8 @@ const closeModal = () => {
         -->
             <div class="relative w-full max-w-2xl h-full md:h-auto">
               <!-- Modal content -->
-              <form action="#" class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <form @submit.prevent="insert_product" action="#"
+                class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
                 <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
                   <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
@@ -233,45 +268,44 @@ const closeModal = () => {
                 <div class="p-6 space-y-6">
                   <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
-                      <label for="first-name"
+                      <label for="product-id"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">ID
                         producto</label>
-                      <input type="text" name="first-name" id="first-name"
+                      <input type="number" v-model="id" name="product-id" id="product-id"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Bonnie" required="">
+                        placeholder="Ej: 123456789" required="">
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                      <label for="last-name"
+                      <label for="product-name"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Nombre
                         producto</label>
-                      <input type="text" name="last-name" id="last-name"
+                      <input type="text" v-model="name" name="product-name" id="product-name"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Green" required="">
+                        placeholder="Ej: Lana verde" required="">
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                      <label for="email"
+                      <label for="product-price"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Precio
                         producto</label>
-                      <input type="email" name="email" id="email"
+                      <input type="number" v-model="price" name="product-price" id="product-price"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="example@company.com" required="">
+                        placeholder="Ej: 1990" required="">
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                      <label for="phone-number"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Descripción
+                      <label for="product-desc"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Departamento
                         producto</label>
-                      <input type="number" name="phone-number" id="phone-number"
+                      <input type="text" v-model="description" name="product-desc" id="product-desc"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="e.g. +(12)3456 789" required="">
+                        placeholder="Ej: Hilo" required="">
                     </div>
                   </div>
                 </div>
                 <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
                   <button type="submit"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save
-                    all</button>
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Agregar</button>
                   <button type="submit" @click="closeModal"
-                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Close</button>
+                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cerrar</button>
                 </div>
               </form>
             </div>
@@ -292,7 +326,7 @@ const closeModal = () => {
           To: "opacity-0"
       -->
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-    
+
         <div class="fixed inset-0 z-10 overflow-y-auto">
           <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <!--
@@ -307,32 +341,35 @@ const closeModal = () => {
           -->
             <div
               class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div class="sm:flex sm:items-start">
-                  <div
-                    class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <!-- Heroicon name: outline/exclamation-triangle -->
-                    <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                      stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 10.5v3.75m-9.303 3.376C1.83 19.126 2.914 21 4.645 21h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 4.88c-.866-1.501-3.032-1.501-3.898 0L2.697 17.626zM12 17.25h.007v.008H12v-.008z" />
-                    </svg>
-                  </div>
-                  <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Deactivate account</h3>
-                    <div class="mt-2">
-                      <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data
-                        will be permanently removed. This action cannot be undone.</p>
+              <form @submit.prevent="remove_product">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div class="sm:flex sm:items-start">
+                    <div
+                      class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                      <!-- Heroicon name: outline/exclamation-triangle -->
+                      <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 10.5v3.75m-9.303 3.376C1.83 19.126 2.914 21 4.645 21h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 4.88c-.866-1.501-3.032-1.501-3.898 0L2.697 17.626zM12 17.25h.007v.008H12v-.008z" />
+                      </svg>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                      <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Borrar producto</h3>
+                      <div class="mt-2">
+                        <p class="text-sm text-gray-500">¿Seguro que quieres borrar el o los productos seleccionados?
+                          Esta
+                          acción no puede deshacerse</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                <button type="button" 
-                  class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Deactivate</button>
-                <button type="button" @click="closeModal"
-                  class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
-              </div>
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                  <button type="submit"
+                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Borrar</button>
+                  <button type="submit" @click="closeModal"
+                    class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
