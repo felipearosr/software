@@ -60,7 +60,7 @@ const handleForgotPassClick = () => {
 <template>
   <div class="grid justify-content-center content-center h-screen bg-gray-200">
     <div v-if="user">
-      <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5 h-[50rem]">
+      <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-6 lg:gap-5 h-[50rem]">
         <SidebarLeft />
         <div class="col-span-12 md:col-span-10 xl:col-span-10 border-white">
           <router-view />
@@ -134,10 +134,12 @@ const handleForgotPassClick = () => {
                 <div class="flex space-x-2">
                   <UButton class="mt-3" icon="mdi:github" block variant="white"
                     @click="auth.signInWithOAuth({ provider: 'github' })" />
-                  <UButton class="mt-3" icon="mdi:google" block variant="white"
-                    @click="auth.signInWithOAuth({ provider: 'google' })" />
-                  <UButton class="mt-3" icon="mdi:facebook" block variant="white"
-                    @click="auth.signInWithOAuth({ provider: 'facebook' })" />
+                  <!-- 
+                    <UButton class="mt-3" icon="mdi:google" block variant="white"
+                      @click="auth.signInWithOAuth({ provider: 'google' })" />
+                    <UButton class="mt-3" icon="mdi:facebook" block variant="white"
+                      @click="auth.signInWithOAuth({ provider: 'facebook' })" />
+                   -->
                 </div>
               </div>
             </div>
@@ -206,10 +208,12 @@ const handleForgotPassClick = () => {
                 <div class="flex space-x-2">
                   <UButton class="mt-3" icon="mdi:github" block variant="white"
                     @click="auth.signInWithOAuth({ provider: 'github' })" />
-                  <UButton class="mt-3" icon="mdi:google" block variant="white"
-                    @click="auth.signInWithOAuth({ provider: 'google' })" />
-                  <UButton class="mt-3" icon="mdi:facebook" block variant="white"
-                    @click="auth.signInWithOAuth({ provider: 'facebook' })" />
+                  <!-- 
+                    <UButton class="mt-3" icon="mdi:google" block variant="white"
+                      @click="auth.signInWithOAuth({ provider: 'google' })" />
+                    <UButton class="mt-3" icon="mdi:facebook" block variant="white"
+                      @click="auth.signInWithOAuth({ provider: 'facebook' })" />
+                   -->
                 </div>
               </div>
             </div>
