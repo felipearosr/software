@@ -80,7 +80,7 @@ async function remove_warehouse() {
       </div>
     </div>
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500">
+      <table class="w-full table-auto text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
             <th scope="col" class="p-4">
