@@ -37,7 +37,6 @@ let prodDesc;
 const openDeleteProductModal = (id) => {
   isDeleteProductModalOpen.value = true;
   prodId = id;
-  alert(prodId)
   console.log(isDeleteProductModalOpen);
 }
 
@@ -46,7 +45,6 @@ const openEditProductModal = (id) => {
   prodId = id;
 
   isProductEditModalOpen.value = true;
-  alert(prodId)
   console.log(isProductEditModalOpen);
 
 }
@@ -94,7 +92,6 @@ async function update_pd() {
 }
 
 async function remove_product() {
-  alert(prodId)
   const { error } = await supabase.from('Product').delete().eq('id', parseInt(prodId))
   closeModal()
   window.location.reload();
