@@ -17,7 +17,7 @@ export default {
 
         for (let i = 0; i < arr.length-1; i++) {
           
-          const { error } = await supabase.from('Product').insert({id: arr[i][0], name: arr[i][1], price: arr[i][2], description: arr[i][3]})
+          const { error } = await supabase.from('pd_wh').insert({id: arr[i][0], name: arr[i][1], price: arr[i][2], description: arr[i][3]})
 
         }
 
@@ -32,6 +32,6 @@ export default {
 <template>
    <input type="file" ref="csvFileInput" @change="onFileChange">
  <div>
-    Lame la tula cristobal
+    Archivo csv.
  </div>
 </template>
