@@ -333,11 +333,6 @@ const handleClick = (id) => {
               class="bg-red-200 hover:bg-red-500 text-red-500 hover:text-white font-bold py-2 px-4 rounded-lg">
               Borrar bodega</UButton>
           </div>
-          <div class="px-3">
-            <UButton @click="openAddProductModal"
-              class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-              Crear bodega</UButton>
-          </div>
         </div>
       </div>
       <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -569,11 +564,6 @@ const handleClick = (id) => {
             <UButton @click="openDeleteWarehouseModal"
               class="bg-red-200 hover:bg-red-500 text-red-500 hover:text-white font-bold py-2 px-4 rounded-lg">
               Borrar bodega</UButton>
-          </div>
-          <div class="px-3">
-            <UButton @click="openAddProductModal"
-              class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-              Crear bodega</UButton>
           </div>
         </div>
       </div>
