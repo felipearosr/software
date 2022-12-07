@@ -177,8 +177,8 @@ async function insert_product() {
       </table>
     </div>
     <nav class="flex justify-between items-center pt-4" aria-label="Table navigation">
-      <span class="text-sm font-normal text-gray-500 pl-3">Showing <span class="font-semibold text-gray-900">14-26</span>
-        of <span class="font-semibold text-gray-900">{{ Product.count }}</span></span>
+      <span class="text-sm font-normal text-gray-500 pl-3">Mostrando <span class="font-semibold text-gray-900">14-26</span>
+        de <span class="font-semibold text-gray-900">{{ Product.count }}</span></span>
       <ul v-if="(Product.count > 13)" class="inline-flex items-center -space-x-px rounded-lg">
         <li>
           <a href="/"
