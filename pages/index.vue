@@ -6,10 +6,6 @@ const isProductModalOpen = ref(false);
 const isProductEditModalOpen = ref(false);
 const isDeleteProductModalOpen = ref(false);
 
-
-
-// console.log(isProductModalOpen);
-
 const renderList = () => {
   render_by_name = !render_by_name
   console.log(render_by_name)
