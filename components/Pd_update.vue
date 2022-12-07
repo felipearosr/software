@@ -3,32 +3,26 @@
     const id = ref('')
     const name = ref('')
     const price = ref('')
-    const description = ref('')
+    // const description = ref('')
 
     async function update_pd(){
         console.log(name.value)
         if(name.value == ''){
             const { error } = await supabase
             .from('Product')
-            .update({ precio: precio.value })
+            .update({ price: price.value })
             .eq('id', id.value)
         }
-        if(precio.value == ''){
+        if(price.value == ''){
             const { error } = await supabase
-            .from('products')
-            .update({ nombre: nombre.value })
+            .from('Product')
+            .update({ name: name.value })
             .eq('id', id.value)
         }
-        if(description.value == ''){
+        if(price.value != '' && name.value != ''){
             const { error } = await supabase
-            .from('products')
-            .update({ nombre: description.value })
-            .eq('id', id.value)
-        }
-        if(precio.value != '' && nombre.value != ''){
-            const { error } = await supabase
-            .from('products')
-            .update({ nombre: nombre.value, precio: precio.value })
+            .from('Product')
+            .update({ name: name.value, price: price.value })
             .eq('id', id.value)
         }
     }
@@ -38,7 +32,7 @@
 
 <template>
     <div class="container">
-        <form @submit.prevent="insert_product">
+        <form @submit.prevent="update_pd">
             <div>
             <label>ID producto</label>
             <input type="number" class="form-control" id="exampleInput" v-model="id">
@@ -51,10 +45,10 @@
             <label>Precio producto</label>
             <input type="number" class="form-control" id="exampleInput" v-model="price">
             </div>
-            <div>
+            <!-- <div>
             <label>Descripción producto</label>
             <input type="text" class="form-control" id="exampleInput" v-model="description">
-            </div>
+            </div> -->
             <button type="submit">Submit</button>
         </form>
     </div>
