@@ -37,10 +37,6 @@ const openDeleteProductModal = (id) => {
   console.log(isDeleteProductModalOpen);
 }
 
-function function3() {
-  window.alert(prodId)
-}
-
 const openAddProductModal = () => {
   isProductModalOpen.value = true;
   console.log(isProductModalOpen);
@@ -59,7 +55,8 @@ const description = ref('')
 
 async function remove_product() {
   alert(prodId)
-  const { error } = await supabase.from('Product').delete().eq('id', prodId)
+  const { error } = await supabase.from('Product').delete().eq('id', parseInt(prodId))
+  closeModal()
 }
 
 async function insert_product() {
@@ -68,10 +65,6 @@ async function insert_product() {
   closeModal()
 }
 
-function function2() {
-  alert("asd")
-
-}
 </script>
 
 <template>
@@ -83,11 +76,6 @@ function function2() {
           <UButton @click="openModal"
             class="bg-green-200 hover:bg-green-500 text-green-600 hover:text-white font-bold py-2 px-4 rounded-lg">
             Descargar tabla</UButton>
-        </div>
-        <div class="pl-3">
-          <UButton @click="openDeleteProductModal"
-            class="bg-red-200 hover:bg-red-500 text-red-500 hover:text-white font-bold py-2 px-4 rounded-lg">
-            Borrar producto</UButton>
         </div>
         <div class="px-3">
           <UButton @click="openAddProductModal"
@@ -114,14 +102,6 @@ function function2() {
       <table class="w-full table-auto text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
-            <th scope="col" class="p-4">
-              <div class="flex items-center">
-                <input id="checkbox-all-search" type="checkbox"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
-                <label for="checkbox-all-search" class="sr-only">checkbox</label>
-              </div>
-            </th>
-
             <button scope="col" class="py-3 px-6" @click="renderList()">
               Id
             </button>
@@ -135,33 +115,22 @@ function function2() {
               Descripción
             </th>
             <th scope="col" class="py-3 px-6">
-              Acción
-            </th>
-            <th scope="col" class="py-3 px-6">
-              Acción
+              Acciones
             </th>
           </tr>
         </thead>
         <tbody>
           <tr class="bg-white border-b hover:bg-gray-50" v-for="pd in Product.data" :key="pd.id">
-            <td class="p-4 w-4">
-              <div class="flex items-center">
-                <input id="checkbox-table-search-2" type="checkbox"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
-                <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-              </div>
-            </td>
-            <td>{{ pd.id }}</td>
-            <td>{{ pd.name }}</td>
-            <td>{{ pd.price }}</td>
-            <td>{{ pd.description }}</td>
+
+            <td class="py-4 px-6">{{ pd.id }}</td>
+            <td class="py-4 px-6">{{ pd.name }}</td>
+            <td class="py-4 px-6">{{ pd.price }}</td>
+            <td class="py-4 px-6">{{ pd.description }}</td>
             <td class="py-4 px-6">
               <a href="#" type="button" data-modal-toggle="editUserModal"
                 class="font-medium text-blue-600 hover:underline">Editar</a>
-            </td>
-            <td class="py-4 px-6">
               <a href="#" type="button" @click="openDeleteProductModal(pd.id)"
-                class="pl-2 font-medium text-red-600 hover:underline">Borrar</a>
+              class="pl-2 font-medium text-red-600 hover:underline">Borrar</a>
             </td>
           </tr>
         </tbody>
@@ -364,7 +333,7 @@ function function2() {
                   </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button type="submit"
+                  <button type="submit" @click="remove_product"
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Borrar</button>
                   <button type="submit" @click="closeModal"
                     class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
