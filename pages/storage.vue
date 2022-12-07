@@ -8,7 +8,7 @@ const { data: Warehouse } = useAsyncData(async () => {
 </script>
 
 <template>
-  <div>
+  <div class="px-4">
         <h1 class="text-bold text-3xl p-3 pt-6 text-gray-500">Bodegas</h1>
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500">

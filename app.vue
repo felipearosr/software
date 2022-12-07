@@ -224,7 +224,6 @@ const handleForgotPassClick = () => {
           <h2 class="my-6 text-center text-3xl font-extrabold u-text-black">
             ¿Olvidaste tu contraseña?
           </h2>
-          <ForgotPassCard />
         </div>
       </PageContainer>
     </div>
