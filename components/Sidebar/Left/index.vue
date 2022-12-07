@@ -4,7 +4,7 @@ import { TableCellsIcon as SolidTableCellsIcon } from "@heroicons/vue/24/solid"
 import { FolderArrowDownIcon as SolidFolderArrowDownIcon } from "@heroicons/vue/24/solid"
 import { ArrowLeftOnRectangleIcon as SolidArrowLeftOnRectangleIcon } from "@heroicons/vue/24/solid"
 
-import { ArchiveBoxIcon, TableCellsIcon, ArrowLeftOnRectangleIcon, FolderArrowDownIcon } from "@heroicons/vue/24/outline"
+import { ArchiveBoxIcon, TableCellsIcon, ArrowLeftOnRectangleIcon, FolderArrowDownIcon, GlobeAsiaAustraliaIcon } from "@heroicons/vue/24/outline"
 
 const active = ref('')
 const email = ref('')
@@ -33,8 +33,13 @@ const getIcon = (icon, active) => {
             <div class="h-full flex flex-col">
                 <div class="p-2 my-2 rounded-full hover:bg-blue-100 w-min" :class="defaultTransition">
                     <nuxt-link to="/">
+                        <div class="hidden ml-4 text-xl xl:block" :class="textClasses">
+                            <h1 class="text-2xl font-bold text-gray-800">
+                               Lana Mavel
+                            </h1>
+                         </div>
                         <div class="w-8 h-8">
-                            <LogoTwitter />
+                            <GlobeAsiaAustraliaIcon />
                         </div>
                     </nuxt-link>
                 </div>
