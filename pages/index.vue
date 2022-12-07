@@ -28,13 +28,27 @@ const openModal = () => {
   isProductModalOpen.value = true;
   console.log(isProductModalOpen);
 }
-var prodId;
+
+let prodId;
+let prodName;
+let prodPrice;
+let prodDesc;
 
 const openDeleteProductModal = (id) => {
   isDeleteProductModalOpen.value = true;
   prodId = id;
   alert(prodId)
   console.log(isDeleteProductModalOpen);
+}
+
+const openEditProductModal = (id) => {
+
+  prodId = id;
+
+  isProductEditModalOpen.value = true;
+  alert(prodId)
+  console.log(isProductEditModalOpen);
+
 }
 
 const openAddProductModal = () => {
@@ -53,16 +67,45 @@ const name = ref('')
 const price = ref('')
 const description = ref('')
 
+async function update_pd() {
+  console.log(prodId)
+  console.log(name.value)
+  console.log(price.value)
+  if (name.value == '') {
+    const { error } = await supabase
+      .from('Product')
+      .update({ price: price.value })
+      .eq('id', prodId)
+  }
+  if (price.value == '') {
+    const { error } = await supabase
+      .from('Product')
+      .update({ name: name.value })
+      .eq('id', prodId)
+  }
+  if (price.value != '' && name.value != '') {
+    const { error } = await supabase
+      .from('Product')
+      .update({ name: name.value, price: price.value })
+      .eq('id', prodId)
+  }
+  closeModal()
+  window.location.reload();
+}
+
 async function remove_product() {
   alert(prodId)
   const { error } = await supabase.from('Product').delete().eq('id', parseInt(prodId))
   closeModal()
+  window.location.reload();
+
 }
 
 async function insert_product() {
   console.log('works')
   const { error } = await supabase.from('Product').insert({ id: id.value, name: name.value, price: price.value, description: description.value })
   closeModal()
+  window.location.reload();
 }
 
 </script>
@@ -102,9 +145,9 @@ async function insert_product() {
       <table class="w-full table-auto text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
-            <button scope="col" class="py-3 px-6" @click="renderList()">
+            <th scope="col" class="py-3 px-6">
               Id
-            </button>
+            </th>
             <th scope="col" class="py-3 px-6">
               Nombre
             </th>
@@ -127,10 +170,10 @@ async function insert_product() {
             <td class="py-4 px-6">{{ pd.price }}</td>
             <td class="py-4 px-6">{{ pd.description }}</td>
             <td class="py-4 px-6">
-              <a href="#" type="button" data-modal-toggle="editUserModal"
+              <a href="#" type="button" @click="openEditProductModal(pd.id, pd.name, pd.price, pd.description)"
                 class="font-medium text-blue-600 hover:underline">Editar</a>
               <a href="#" type="button" @click="openDeleteProductModal(pd.id)"
-              class="pl-2 font-medium text-red-600 hover:underline">Borrar</a>
+                class="pl-2 font-medium text-red-600 hover:underline">Borrar</a>
             </td>
           </tr>
         </tbody>
@@ -337,6 +380,66 @@ async function insert_product() {
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Borrar</button>
                   <button type="submit" @click="closeModal"
                     class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ####################### EDIT PRODUCT #######################-->
+
+    <div v-if="isProductEditModalOpen" class="h-screen flex justify-center items-center">
+      <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class="relative w-full max-w-2xl h-full md:h-auto">
+              <!-- Modal content -->
+              <form @submit.prevent="update_pd" action="#"
+                class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Editar producto
+                  </h3>
+                  <button type="button" @click="closeModal"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-toggle="editUserModal">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                  <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="product-name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Nombre
+                        producto</label>
+                      <input type="text" v-model="name" name="product-name" id="edit-product-name"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Ej: Lana verde" required="">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="product-price"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Precio
+                        producto</label>
+                      <input type="number" v-model="price" name="product-price" id="edit-product-price"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Ej: 1990" required="">
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                  <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Agregar</button>
+                  <button type="submit" @click="closeModal"
+                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cerrar</button>
                 </div>
               </form>
             </div>
