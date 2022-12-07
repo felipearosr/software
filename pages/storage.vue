@@ -1,3 +1,23 @@
+<script>
+import FileSaver from 'file-saver';
+
+export default {
+  methods: {
+    async downloadCSV() {
+      const supabase = useSupabaseClient()
+      const { data, error } = await supabase
+        .from('pd_wh')
+        .select()
+        .csv()
+        console.log(data)
+          const csv = data;
+          const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+          FileSaver.saveAs(blob, 'pd_wh.csv');
+    },
+  },
+};
+</script>
+
 <script setup>
 const supabase = useSupabaseClient()
 
@@ -96,6 +116,10 @@ const handleClick = (id) => {
       <div class="flex justify-between items-center">
         <h1 class="text-bold text-3xl p-3 pt-6 text-gray-700">Bodegas</h1>
         <div class="flex">
+          <!-- <button @click="downloadCSV">Download CSV</button> -->
+              <UButton @click="downloadCSV"
+              class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
+              Descargar csv</UButton>
           <div class="px-3">
             <UButton @click="openAddProductModal"
               class="bg-blue-200 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg">
