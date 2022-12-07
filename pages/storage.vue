@@ -348,10 +348,10 @@ const handleClick = (id) => {
                 Id
               </th>
               <th scope="col" class="py-3 px-6">
-                Alias
+                Product Id
               </th>
               <th scope="col" class="py-3 px-6">
-                Dirección
+                Cantidad
               </th>
               <th scope="col" class="py-3 px-6">
                 Acciones
@@ -364,9 +364,8 @@ const handleClick = (id) => {
               <td class="py-4 px-6">{{ pdwh.pid }}</td>
               <td class="py-4 px-6">{{ pdwh.ammount }}</td>
               <td class="py-4 px-6">
-                <a href="#" class="font-medium text-blue-600 hover:underline">Ver</a>
                 <a href="#" type="button" @click="openDeleteWarehouseModal(pdwh.id)"
-                  class="pl-2 font-medium text-red-600 hover:underline">Borrar</a>
+                  class="font-medium text-red-600 hover:underline">Borrar</a>
               </td>
   
             </tr>
@@ -586,10 +585,10 @@ const handleClick = (id) => {
                 Id
               </th>
               <th scope="col" class="py-3 px-6">
-                Alias
+                Id producto
               </th>
               <th scope="col" class="py-3 px-6">
-                Dirección
+                Cantidad
               </th>
               <th scope="col" class="py-3 px-6">
                 Acciones
@@ -600,11 +599,10 @@ const handleClick = (id) => {
             <tr class="bg-white border-b hover:bg-gray-50" v-for="pfwh2 in Pd_wh2" :key="pfwh2.id">
               <td class="py-4 px-6">{{ pfwh2.id }}</td>
               <td class="py-4 px-6">{{ pfwh2.pid }}</td>
-              <td class="py-4 px-6">{{ pfwh2.amount }}</td>
+              <td class="py-4 px-6">{{ pfwh2.ammount }}</td>
               <td class="py-4 px-6">
-                <a href="#" class="font-medium text-blue-600 hover:underline">Ver</a>
                 <a href="#" type="button" @click="openDeleteWarehouseModal(pfwh2.id)"
-                  class="pl-2 font-medium text-red-600 hover:underline">Borrar</a>
+                  class="font-medium text-red-600 hover:underline">Borrar</a>
               </td>
   
             </tr>
