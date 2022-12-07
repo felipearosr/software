@@ -8,7 +8,7 @@ const isDeleteProductModalOpen = ref(false);
 
 
 
-console.log(isProductModalOpen);
+// console.log(isProductModalOpen);
 
 const renderList = () => {
   render_by_name = !render_by_name
